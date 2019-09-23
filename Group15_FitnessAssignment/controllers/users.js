@@ -16,9 +16,19 @@ exports.login = function (req, res, next) {
     };
 
 exports.showRegister = function (req, res, next) {
-    res.render('register', { title: 'Register' });
+    res.render('user/register', { title: 'Register' });
 };
 
-exports.register = function (req, res, next) {
-   // userModel.createUser(req, res);
+exports.register = function (req, res) {
+    try {
+        User.createUser(req, res);
+    }
+    catch (err) {
+        console.log(err);
+
+        res.render('user/register',{
+        title: 'Register',
+        user: user
+    });
+    }
 };
