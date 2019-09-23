@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1=title
+    form(action="login/login" method="POST")
+        p Email:
+        input(type="text" name="email")
+        br
+        p Password:
+        input(type="text" name="password")
+        br
+        input(type="submit" value="Login")
+
+    form(action="/register" method="GET")
+        input(type="submit" value="Register")
