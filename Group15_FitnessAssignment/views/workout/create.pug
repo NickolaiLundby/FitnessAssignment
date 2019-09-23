@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+    h1=title
+    form(action="/create", method="post")
+        p Name:
+        input(type='text' name='name' placeholder='My workout program name')
+        br
+        input(type='submit' value="Create")

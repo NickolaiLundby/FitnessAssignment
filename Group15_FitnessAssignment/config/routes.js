@@ -1,7 +1,7 @@
 'use strict';
 
 // Module dependencies
-
+const workouts = require('../controllers/workouts')
 const users = require('../controllers/users');
 const index = require('../controllers/index');
 
@@ -16,7 +16,10 @@ module.exports = function(app, passport) {
     app.post('/register', users.register);
 
     // Workout routes
-    
+    app.get('/showall', workouts.showall);
+    app.get('/show/:id', workouts.show);
+    app.get('/create', workouts.new);
+    app.post('/create', workouts.create);
 
     // Error handling
     app.use(function(req, res, next) {
