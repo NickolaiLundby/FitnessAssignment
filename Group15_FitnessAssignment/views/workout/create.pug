@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+    h1=title
+    form(action="/workout/create" method="POST")
+        p Title:
+        input(type="text" name="title")
+        br
+        input(type="submit" value="Submit")
