@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require( 'mongoose' );
-const aws = require('aws-sdk');
 var devMode = true;
 
 try {
