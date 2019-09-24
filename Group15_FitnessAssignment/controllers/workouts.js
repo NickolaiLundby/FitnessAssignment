@@ -2,30 +2,28 @@
 
 const mongoose = require('mongoose');
 //const Workout = mongoose.model('Workout');
-const Workout = require('../models/workout');
+const Workout = require('../models/workout')
 
-
-module.exports.show = function (req, res) {
-    console.log(req.params);
-    //var workout = await Workout.findById(req.params.id)
-    res.render('workout/show', { title: "Something"});
+module.exports.show = async function (req, res) {
+    var workout = await Workout.findWorkout(req.params.id);
+    res.render('workout/show', {workout: workout})
 }
 
-module.exports.showall = function (req, res){
-    res.render('workout/showall', { title: "Workout programs" });
+module.exports.showall = async function (req, res){
+    var workouts = await Workout.findWorkoutsByUser(req.user._id);
+    res.render('workout/showall', { title: "Workout programs:", workouts: workouts});
 }
 
 module.exports.new = function (req, res){
     res.render('workout/create', { title: "Create workout program"});
 }
 
-// Will move to model in next pull request
-module.exports.create = async function(req, res){
-    var workout = new Workout(req.body);
-    await workout.save();
-    var id = workout._id.toString()
-    console.log(id);
-    res.redirect('/workout/show/id:${id}');
+module.exports.create = function(req, res){
+    Workout.createWorkout(req, res);
+}
+
+module.exports.addExercise = function(req, res){
+    Workout.addExercise(req.params.id, req, res);
 }
 
 /*

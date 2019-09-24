@@ -21,13 +21,12 @@ module.exports = function(app, passport) {
     app.post('/register', users.register);
 
     // Workout routes
-
-    app.get('/workout/showall', workouts.showall);
-    app.get('/workout/show/:id', workouts.show); 
+    app.get('/workout/showall', auth.ensureLoggedIn('/login'), workouts.showall);
+    app.get('/workout/show/:id', auth.ensureLoggedIn('/login'), workouts.show); 
     app.get('/workout/create', auth.ensureLoggedIn('/login'), workouts.new);
     app.post('/workout/create', auth.ensureLoggedIn('/login'), workouts.create);
+    app.post('/workout/:id/addExercise', auth.ensureLoggedIn('/login'), workouts.addExercise);
   
-     
     // Error handling
     app.use(function(req, res, next) {
         next(createError(404));
