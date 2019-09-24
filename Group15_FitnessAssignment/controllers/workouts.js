@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Workout = require('../models/workout');
 
 
-module.exports.show = async function (req, res) {
+module.exports.show = function (req, res) {
     console.log(req.params);
     //var workout = await Workout.findById(req.params.id)
     res.render('workout/show', { title: "Something"});

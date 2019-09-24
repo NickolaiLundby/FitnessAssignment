@@ -1,7 +1,6 @@
 'use strict';
 
 // Module dependencies
-const workouts = require('../controllers/workouts')
 const users = require('../controllers/users');
 const index = require('../controllers/index');
 const workouts = require('../controllers/workouts');
