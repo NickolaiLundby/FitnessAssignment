@@ -1,10 +1,11 @@
 // Module dependencies
 
 const express = require('express');
-//const session = require('express-session');
+const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const package = require('../package.json');
 
 module.exports = function(app, passport){
     // Setup database here
@@ -21,9 +22,10 @@ module.exports = function(app, passport){
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser());
+    app.use(session({ secret: package.name, resave: false, saveUninitialized: true }))
     
 
     // Passport for authentication
     app.use(passport.initialize());
-    //app.use(passport.session());
+    app.use(passport.session());
 }
