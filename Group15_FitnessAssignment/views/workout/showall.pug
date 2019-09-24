@@ -2,3 +2,8 @@ extends ../layout
 
 block content
     h1=title
+    table.table.table-striped
+        each wo in workouts
+            tr
+                td
+                    a(href=`/workout/show/${wo._id}`) #{wo.title}

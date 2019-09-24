@@ -3,7 +3,7 @@ extends ../layout
 block content
     h1=title
     form(action="/workout/create", method="post")
-        p Name:
-        input(type='text' name='name' placeholder='My workout program name')
+        p Title:
+        input(type='text' name='title' placeholder='My workout program name')
         br
         input(type='submit' value="Create")
