@@ -5,11 +5,12 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "engines":{
+  "engines": {
     "node": "^12.9.1",
     "npm": "^6.10.2"
   },
   "dependencies": {
+    "aws-sdk": "^2.534.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "connect-ensure-login": "^0.1.1",

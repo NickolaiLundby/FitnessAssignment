@@ -1,12 +1,25 @@
 'use strict';
 
-var mongoose = require( 'mongoose' );
+const mongoose = require( 'mongoose' );
+const aws = require('aws-sdk');
+var devMode = true;
 
-var dbURI = 'mongodb://localhost/FitnessApp';
-mongoose.connect(dbURI);
+try {
+    var dbURI = process.env.DEV_MONGODB;
+    devMode = false;
+    mongoose.connect(dbURI);
+} catch {
+    var dbURI = 'mongodb://localhost/FitnessApp';
+    devMode = true;
+    mongoose.connect(dbURI);
+}
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to ${dbURI}`);
+    if (devMode) {
+        console.log(`Mongoose connected to ${dbURI}`);
+    } else {
+        console.log(`Mongoose connected!`);
+    }
 });
 mongoose.connection.on('error', err => {
     console.log('Mongoose connection error:', err);
