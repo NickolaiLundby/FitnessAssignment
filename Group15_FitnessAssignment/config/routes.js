@@ -19,6 +19,7 @@ module.exports = function(app, passport) {
         });
     app.get('/register', users.showRegister);
     app.post('/register', users.register);
+    app.get('/logout', users.logout);
 
     // Workout routes
 
