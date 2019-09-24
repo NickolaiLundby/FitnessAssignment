@@ -1,4 +1,5 @@
 'use strict';
+
 const mongoose = require('mongoose');
 //const Workout = mongoose.model('Workout');
 const Workout = require('../models/workout');
@@ -27,3 +28,21 @@ module.exports.create = async function(req, res){
     res.redirect('/workout/show/id:${id}');
 }
 
+/*
+exports.showCreateWorkout = function (req, res, next) {
+    res.render('workout/create', { title: 'Create Workout' });
+    };
+
+exports.createWorkout = function (req, res, next) {
+    try {
+        Workout.createWorkout(req, res);
+    }
+    catch (err) {
+        console.log(err);
+
+        res.render('workout/create',{
+        title: 'Create Workout'
+    });
+    }
+    };
+ */

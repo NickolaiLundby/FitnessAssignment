@@ -4,6 +4,8 @@
 const workouts = require('../controllers/workouts')
 const users = require('../controllers/users');
 const index = require('../controllers/index');
+const workouts = require('../controllers/workouts');
+const auth = require('connect-ensure-login');
 
 module.exports = function(app, passport) {
     // Index routes
@@ -11,16 +13,29 @@ module.exports = function(app, passport) {
 
     // User routes
     app.get('/login', users.showLogin);
-    app.post('/login', users.login);
+    app.post('/login',
+        passport.authenticate('local', { failureRedirect: '/login' }),
+        function(req, res) {
+        res.redirect('/');
+        });
     app.get('/register', users.showRegister);
     app.post('/register', users.register);
 
     // Workout routes
+
     app.get('/workout/showall', workouts.showall);
     app.get('/workout/show/:id', workouts.show);
     app.get('/workout/create', workouts.new);
     app.post('/workout/create', workouts.create);
-
+  
+    /*app.get('/workout/create',
+        auth.ensureLoggedIn('/login'),
+        workouts.showCreateWorkout);
+    app.post('/workout/create', 
+        auth.ensureLoggedIn('/login'), 
+        workouts.createWorkout);
+    */   
+     
     // Error handling
     app.use(function(req, res, next) {
         next(createError(404));
