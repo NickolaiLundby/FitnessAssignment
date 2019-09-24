@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
-const Workout = mongoose.model('Workout');
+//const Workout = mongoose.model('Workout');
+const Workout = require('../models/workout');
 
 
 module.exports.show = async function (req, res) {
@@ -23,6 +24,6 @@ module.exports.create = async function(req, res){
     await workout.save();
     var id = workout._id.toString()
     console.log(id);
-    res.redirect('/show/id:${id}');
+    res.redirect('/workout/show/id:${id}');
 }
 

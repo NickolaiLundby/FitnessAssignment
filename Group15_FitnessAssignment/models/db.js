@@ -1,36 +1,15 @@
-const mongoose = require('mongoose');
+'use strict';
 
-const server = 'localhost:27017'; // Could be replaced with extern ip
-const database = 'workoutdb'; // Any database name here
+var mongoose = require( 'mongoose' );
 
-class Database {
-    constructor() {
-        this._connect()
-    }
-
-    _connect() {
-        mongoose.connect(`mongodb://${server}/${database}`)
-        .then(() => {
-            console.log('Database connection succeeded')
-        })
-        .catch(err => {
-            console.error('Database connection failed')
-        })
-    }
-};
-
-const gracefulShutdown = (msg, callback) => {
-    mongoose.connection.close( () => {
-        console.log(`Mongoose disconnected through ${msg}`);
-        callback();
-    });
-};
+var dbURI = 'mongodb://localhost/FitnessApp';
+mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to mongodb://${server}/${database}`);
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 mongoose.connection.on('error', err => {
-    console.log('Mongoose connection error: ', err);
+    console.log('Mongoose connection error:', err);
 });
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
@@ -50,10 +29,22 @@ process.on('SIGINT', () => {
     });
 });
 
+// For Heroku app termination
 process.on('SIGTERM', () => {
     gracefulShutdown('Heroku app shutdown', () => {
         process.exit(0);
     });
 });
 
-module.exports = new Database();
+const gracefulShutdown = (msg, callback) => {
+    mongoose.connection.close( () => {
+        console.log(`Mongoose disconnected through
+        ${msg}`);
+        callback();
+    });
+};
+
+const handleError = (err) => {
+    console.log(`Error: ${err}`);
+    return done(err);
+};

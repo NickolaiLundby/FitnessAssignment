@@ -16,10 +16,10 @@ module.exports = function(app, passport) {
     app.post('/register', users.register);
 
     // Workout routes
-    app.get('/showall', workouts.showall);
-    app.get('/show/:id', workouts.show);
-    app.get('/create', workouts.new);
-    app.post('/create', workouts.create);
+    app.get('/workout/showall', workouts.showall);
+    app.get('/workout/show/:id', workouts.show);
+    app.get('/workout/create', workouts.new);
+    app.post('/workout/create', workouts.create);
 
     // Error handling
     app.use(function(req, res, next) {
