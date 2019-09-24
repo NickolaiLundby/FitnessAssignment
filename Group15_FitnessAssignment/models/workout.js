@@ -1,9 +1,36 @@
 'use strict';
 
-// Module dependencies
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+const WorkoutSchema = new Schema({
+  name: {
+      type: String,
+      required: true,
+  },
+  exercises: [{
+      name: {
+          type: String,
+          required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      set: {
+          type: Number,
+          required: true
+      },
+      reps_time: {
+          type: Number,
+          required: true
+      }
+  }]
+});
+
+mongoose.model('Workout', WorkoutSchema);
+
+/*
 
 // User schema
 const WorkoutSchema = new Schema({
@@ -38,3 +65,4 @@ exports.createWorkout = async function(req, res){
         }
     })
 };
+*/
