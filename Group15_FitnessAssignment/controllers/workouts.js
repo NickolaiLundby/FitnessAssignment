@@ -19,9 +19,8 @@ module.exports.new = function (req, res){
     res.render('workout/create', { title: "Create workout program"});
 }
 
-
+// Will move to model in next pull request
 module.exports.create = async function(req, res){
-    // Will move to model in next pull request
     var workout = new Workout(req.body);
     await workout.save();
     var id = workout._id.toString()
