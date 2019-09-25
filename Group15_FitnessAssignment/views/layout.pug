@@ -7,15 +7,17 @@ html
     
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
 
-    link(rel='stylesheet', href='/stylesheets/style.css' type="text/css")
-  body
+    link(rel='stylesheet', href='/stylesheets/style.css')
 
+    //- This removes the "GET /favicon.ico 500" error
+    link(rel='shortcut icon' href='#')
+  body
     nav.navbar.navbar-default
       .container-fluid
         .navbar-header
           a.navbar-brand(href='/') Fitness App
         ul.nav.navbar-nav
-          li.active
+          li
             a(href='/') Home
           li
             a(href='/workout/create') Create Workout
@@ -30,5 +32,6 @@ html
 
     block content
 
-    #myFooter.footer FOOTER
+    .panel-footer
+      small &copy; Group 15
 
