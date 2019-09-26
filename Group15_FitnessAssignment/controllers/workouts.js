@@ -11,7 +11,7 @@ module.exports.show = async function (req, res) {
 
 module.exports.showall = async function (req, res){
     var workouts = await Workout.findWorkoutsByUser(req.user._id);
-    res.render('workout/showall', { title: "Workout programs:", workouts: workouts});
+    res.render('workout/showall', { title: "Workout programs", workouts: workouts});
 }
 
 module.exports.new = function (req, res){
