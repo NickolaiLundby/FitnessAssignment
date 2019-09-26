@@ -1,7 +1,12 @@
 extends layout
 
 block content
-  header(class='w3-container w3-padding-32 w3-center w3-black')
-    div(class='w3-padding-large' id='main')
+  div(class='w3-padding-large' id='main')
+    header(class='w3-container w3-padding-32 w3-center w3-black')
       h1(class='w3-jumbo')= title
-      p Welcome to #{title}
+      p Welcome to the #{title}
+
+    div(class='w3-content w3-justify w3-text-grey w3-padding-64 w3-center')
+      h2(class='w3-text-light-grey') About
+      hr(style='margin-left:10%; !important; margin-right:10%' class='w3-opacity')
+      p(style='margin-left:10%; !important; margin-right:10%') The fitness app is done using PUG as the view engine. It is being hosted on heroku, with a mongodb as storage. Most of the cascading stylesheets are found on the W3Schools website.
