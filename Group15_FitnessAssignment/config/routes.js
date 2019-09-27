@@ -4,6 +4,7 @@
 const users = require('../controllers/users');
 const index = require('../controllers/index');
 const workouts = require('../controllers/workouts');
+const activities = require('../controllers/activities');
 const auth = require('connect-ensure-login');
 
 module.exports = function(app, passport) {
@@ -27,6 +28,9 @@ module.exports = function(app, passport) {
     app.get('/workout/create', auth.ensureLoggedIn('/login'), workouts.new);
     app.post('/workout/create', auth.ensureLoggedIn('/login'), workouts.create);
     app.post('/workout/:id/addExercise', auth.ensureLoggedIn('/login'), workouts.addExercise);
+
+    // Activity routes
+    app.get('/activity/show', activities.show);
   
     // Error handling
     app.use(function(req, res, next) {
