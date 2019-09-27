@@ -16,27 +16,31 @@ html
     nav(class='w3-sidebar w3-bar-block w3-small w3-hide-small w3-center')
       img(src='/images/man_dumbells.jpeg' style='width:100%;')
       a(href='/' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-home w3-xxlarge')
+        i(class='fa fa-home w3-xlarge')
         p Fitness App
       if !loggedIn
         a(href='/login' class='w3-bar-item w3-button w3-padding-large w3-black')
-          i(class='fa fa-user w3-xxlarge') 
+          i(class='fa fa-user w3-xlarge') 
           p Login
       if !loggedIn
         a(href='/register' class='w3-bar-item w3-button w3-padding-large w3-black')
-          i(class='fa fa-user w3-xxlarge') 
+          i(class='fa fa-user w3-xlarge') 
           p Register
       if loggedIn
         a(href='/workout/create' class='w3-bar-item w3-button w3-padding-large w3-black')
-          i(class='fa fa-envelope w3-xxlarge') 
+          i(class='fa fa-envelope w3-xlarge') 
           p Create Workout
       if loggedIn
         a(href='/workout/showall' class='w3-bar-item w3-button w3-padding-large w3-black')
-          i(class='fa fa-eye w3-xxlarge') 
+          i(class='fa fa-eye w3-xlarge') 
           p Show Workouts
       if loggedIn
+        a(href='/activity/show' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-eye w3-xlarge') 
+          p Show Activity
+      if loggedIn
         a(href='/logout' class='w3-bar-item w3-button w3-padding-large w3-black')
-          i(class='fa fa-user w3-xxlarge') 
+          i(class='fa fa-user w3-xlarge') 
           p Logout
 
     block content
