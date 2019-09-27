@@ -1,7 +1,9 @@
 'use strict';
 
 // Module dependencies
+const Auth = require('../config/middleware/authorization');
 
-exports.index = function(req, res) {
-    res.render('index', {title: 'Fitness App' });
-}
+exports.index = async function(req, res) {
+    var loggedIn = await Auth.isLoggedIn(req);
+    res.render('index', {title: 'Fitness App', loggedIn: loggedIn });
+};

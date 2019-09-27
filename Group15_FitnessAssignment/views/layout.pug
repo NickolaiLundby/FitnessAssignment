@@ -14,25 +14,30 @@ html
     
   body(class='w3-black')
     nav(class='w3-sidebar w3-bar-block w3-small w3-hide-small w3-center')
-      img(src='../public/images/man_dumbells.jpeg' style='width:100%;')
+      img(src='/images/man_dumbells.jpeg' style='width:100%;')
       a(href='/' class='w3-bar-item w3-button w3-padding-large w3-black')
         i(class='fa fa-home w3-xxlarge')
         p Fitness App
-      a(href='/login' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-user w3-xxlarge') 
-        p Login
-      a(href='/register' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-user w3-xxlarge') 
-        p Register
-      a(href='/workout/create' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-envelope w3-xxlarge') 
-        p Create Workout
-      a(href='/workout/showall' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-eye w3-xxlarge') 
-        p Show Workouts
-      a(href='/logout' class='w3-bar-item w3-button w3-padding-large w3-black')
-        i(class='fa fa-user w3-xxlarge') 
-        p Logout
+      if !loggedIn
+        a(href='/login' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Login
+      if !loggedIn
+        a(href='/register' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Register
+      if loggedIn
+        a(href='/workout/create' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-envelope w3-xxlarge') 
+          p Create Workout
+      if loggedIn
+        a(href='/workout/showall' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-eye w3-xxlarge') 
+          p Show Workouts
+      if loggedIn
+        a(href='/logout' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Logout
 
     block content
 
