@@ -30,7 +30,8 @@ module.exports = function(app, passport) {
     app.post('/workout/:id/addExercise', auth.ensureLoggedIn('/login'), workouts.addExercise);
 
     // Activity routes
-    app.get('/activity/show', activities.show);
+    app.get('/activity/show', auth.ensureLoggedIn('/login'), activities.show);
+    app.post('/activity/add', auth.ensureLoggedIn('/login'), activities.add);
   
     // Error handling
     app.use(function(req, res, next) {

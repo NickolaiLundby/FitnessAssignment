@@ -19,6 +19,7 @@ const UserSchema = new Schema({
 const User = mongoose.model('User', UserSchema);
 
 // TODO: When saving goes well, just redirect to /login with user info.
+
 exports.createUser = function(req, res){
     bcrypt.hash(req.body.password, 10).then(async function(hash){
         var user = new User({
