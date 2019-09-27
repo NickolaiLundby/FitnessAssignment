@@ -1,31 +1,33 @@
 extends ../layout
 
 block content
-    h1=workout.title
-
-    table.table.table-striped
-        tr
-                th Exercise
-                th Description
-                th Sets
-                th Repetitions/Duration
-        each ex in workout.exercises
-            tr
-                th=ex.name
-                th=ex.description
-                th=ex.set
-                th=ex.reps_time
-    br
-    h2 Add new exercise to workout:
-    br
-    form(action=`/workout/${workout._id}/addExercise`, method="post")
-        p Name:
-        input(type='text' name='name' placeholder='My exercise')
-        p Description:
-        input(type='text' name='description' placeholder='My description')
-        p Sets:
-        input(type='number' name='set' placeholder='1')
-        p Repetions / Duration:
-        input(type='number' name='reps_time' placeholder='30')
-        br
-        input(type='submit' value="Create")
+    header(class='w3-container w3-padding-32 w3-center w3-black')
+        div(class='w3-padding-large' id='main')
+            h1(class='w3-jumbo')=workout.title
+            table(class='w3-table w3-striped w3-centered w3-bordered w3-border')
+                tr
+                    th Exercise
+                    th Description
+                    th Sets
+                    th Repetitions/Duration
+                each ex in workout.exercises
+                    tr(class='w3-text-grey')
+                        th=ex.name
+                        th=ex.description
+                        th=ex.set
+                        th=ex.reps_time
+            br
+            h2(class='w3-text-light-grey') Add new exercise to workout:
+            br
+            form(action=`/workout/${workout._id}/addExercise`, method='post')
+                p Name:
+                input(type='text' name='name' placeholder='My exercise')
+                p Description:
+                input(type='text' name='description' placeholder='My description')
+                p Sets:
+                input(type='number' name='set' placeholder='1')
+                p Repetions / Duration:
+                input(type='number' name='reps_time' placeholder='30')
+                br
+                br
+                input(type='submit' value="Create")

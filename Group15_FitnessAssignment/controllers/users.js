@@ -3,25 +3,20 @@
 // Module dependencies
 const User = require('../models/user');
 const mongoose = require('mongoose');
-//const User = mongoose.model('User');
+const Auth = require('../config/middleware/authorization');
 
-
-
-exports.showLogin = function (req, res, next) {
-    res.render('user/login', { title: 'Login' });
-    };
-
-/*exports.login = function (req, res, next) {
-    passport.authenticate('local', { failureRedirect: '/login' }, function(req, res) {
-        res.redirect('/')
-    });
-    };*/
-
-exports.showRegister = function (req, res, next) {
-    res.render('user/register', { title: 'Register' });
+exports.showLogin = async function (req, res, next) {
+    var loggedIn = await Auth.isLoggedIn(req);
+    res.render('user/login', { title: 'Login', loggedIn: loggedIn });
 };
 
-exports.register = function (req, res) {
+exports.showRegister = async function (req, res, next) {
+    var loggedIn = await Auth.isLoggedIn(req);
+    res.render('user/register', { title: 'Register', loggedIn: loggedIn });
+};
+
+exports.register = async function (req, res) {
+    var loggedIn = await Auth.isLoggedIn(req);
     try {
         User.createUser(req, res);
     }
@@ -29,12 +24,13 @@ exports.register = function (req, res) {
         console.log(err);
 
         res.render('user/register',{
-        title: 'Register'
+        title: 'Register',
+        loggedIn: loggedIn
     });
     }
 };
 
-exports.logout = function (req, res) {
+exports.logout = async function (req, res) {
     req.logout();
     res.redirect('/login');
 };

@@ -15,10 +15,8 @@ async function(email, password, done){
             return done(null, false, { message: 'Invalid user' });
         }
         if (!await User.validatePassword(user, password)){
-            console.log('HEJ"#!"#"!#"!')
             return done(null, false, { message: 'Invalid password' });
         }
-        console.log('before return');
         return done(null, user);
     }
 );

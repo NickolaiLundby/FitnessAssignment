@@ -2,33 +2,42 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-    integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
-    
-    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-
+    link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-
-    //- This removes the "GET /favicon.ico 500" error
-    link(rel='shortcut icon' href='#')
-  body
-    nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href='/') Fitness App
-        ul.nav.navbar-nav
-          li
-            a(href='/') Home
-          li
-            a(href='/workout/create') Create Workout
-          li
-            a(href='/workout/showall') Workouts
-          li
-            a(href='/login') Login
-          li
-            a(href='/register') Register
-          li
-            a(href='/logout') Logout
+    style.
+      body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+      .w3-row-padding img {margin-bottom: 12px}
+      .w3-sidebar {width: 160px;background: #222;}
+      #main {margin-left: 120px}
+    
+  body(class='w3-black')
+    nav(class='w3-sidebar w3-bar-block w3-small w3-hide-small w3-center')
+      img(src='/images/man_dumbells.jpeg' style='width:100%;')
+      a(href='/' class='w3-bar-item w3-button w3-padding-large w3-black')
+        i(class='fa fa-home w3-xxlarge')
+        p Fitness App
+      if !loggedIn
+        a(href='/login' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Login
+      if !loggedIn
+        a(href='/register' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Register
+      if loggedIn
+        a(href='/workout/create' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-envelope w3-xxlarge') 
+          p Create Workout
+      if loggedIn
+        a(href='/workout/showall' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-eye w3-xxlarge') 
+          p Show Workouts
+      if loggedIn
+        a(href='/logout' class='w3-bar-item w3-button w3-padding-large w3-black')
+          i(class='fa fa-user w3-xxlarge') 
+          p Logout
 
     block content
 
